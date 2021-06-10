@@ -1,0 +1,5 @@
+Step 1: Create Controller Class
+Step 2: Define Controller method
+step 3: Add Request Mapping to Controller in method
+step 4: return view Name
+step 5: develop view page
