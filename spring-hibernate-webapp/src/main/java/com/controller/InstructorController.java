@@ -43,7 +43,7 @@ public class InstructorController {
 	@RequestMapping("/saveInstructor")
 	public String saveInstructor(@ModelAttribute("instructor") Instructor theInstructor) {
 
-		instructorService.addInstructor(theInstructor);
+		instructorService.saveInstructor(theInstructor);
 
 		return "redirect:/instructor/list";
 	}
@@ -73,5 +73,23 @@ public class InstructorController {
 		theModel.addAttribute("instructor", theInstructor);
 		
 		return "/instructor-detail";
+	}
+	
+	@RequestMapping("/showFormForUpdateDetail")
+	public String updateInstructorDetail(@RequestParam("instructorId") int theId, Model theModel) {
+
+		Instructor instructor = instructorService.getInstructor(theId);
+
+		theModel.addAttribute("instructor", instructor);
+
+		return "/instructor-detail-form";
+	}
+	
+	@RequestMapping("/saveInstructorDetail")
+	public String saveInstructorDetail(@ModelAttribute("instructor") Instructor theInstructor) {
+
+		instructorService.saveInstructor(theInstructor);
+
+		return "redirect:/instructor/detail?instructorId="+theInstructor.getId();
 	}
 }

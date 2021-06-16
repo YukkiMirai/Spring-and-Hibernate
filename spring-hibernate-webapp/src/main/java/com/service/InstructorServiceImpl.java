@@ -24,7 +24,7 @@ public class InstructorServiceImpl implements InstructorService {
 
 	@Override
 	@Transactional
-	public void addInstructor(Instructor theInstructor) {
+	public void saveInstructor(Instructor theInstructor) {
 		instructorDAO.addInstructor(theInstructor);		
 	}
 

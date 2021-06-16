@@ -44,6 +44,18 @@
 						<td><label>Email:</label></td>
 						<td><form:input path="email"/></td>
 					</tr>
+					
+					<form:hidden path="instructorDetail.id"/>
+					
+					<tr>
+						<td><label>Youtube Channel:</label></td>
+						<td><form:input path="instructorDetail.youtubeChannel"/></td>
+					</tr>
+					
+					<tr>
+						<td><label>Hobby:</label></td>
+						<td><form:input path="instructorDetail.hobby"/></td>
+					</tr>
 
 					<tr>
 						<td></td>
