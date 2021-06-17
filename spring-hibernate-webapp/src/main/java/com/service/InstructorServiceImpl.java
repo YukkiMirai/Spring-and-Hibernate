@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.InstructorDAO;
+import com.entity.Course;
 import com.entity.Instructor;
 
 @Service
@@ -39,6 +40,13 @@ public class InstructorServiceImpl implements InstructorService {
 	@Transactional
 	public void deleteInstructor(int theId) {
 		instructorDAO.deleteInstructor(theId);
+		
+	}
+
+	@Override
+	@Transactional
+	public void saveCourse(Course theCourse, int theInstructorId) {
+		instructorDAO.saveCourse(theCourse, theInstructorId);
 		
 	}
 

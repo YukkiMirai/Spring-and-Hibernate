@@ -1,12 +1,17 @@
 package com.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,7 +36,10 @@ public class Instructor {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "instructor_detail_id")
 	private InstructorDetail instructorDetail;
-
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH }, mappedBy = "instructor")
+	private List<Course> courses;
+	
 	public Instructor() {
 
 	}
@@ -88,4 +96,19 @@ public class Instructor {
 				+ ", instructorDetail=" + instructorDetail + "]";
 	}
 
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
+	public void addCourse(Course theCourse){
+		if(courses == null) {
+			courses = new ArrayList<>();
+		}
+		courses.add(theCourse);
+		theCourse.setInstructor(this);
+	}
 }

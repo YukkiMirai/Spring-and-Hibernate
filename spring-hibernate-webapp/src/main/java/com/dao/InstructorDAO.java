@@ -2,6 +2,7 @@ package com.dao;
 
 import java.util.List;
 
+import com.entity.Course;
 import com.entity.Instructor;
 
 public interface InstructorDAO {
@@ -13,5 +14,7 @@ public interface InstructorDAO {
 	public Instructor getInstructor(int theId);
 
 	public void deleteInstructor(int theId);
+
+	public void saveCourse(Course theCourse, int theInstructorId);
 	
 }

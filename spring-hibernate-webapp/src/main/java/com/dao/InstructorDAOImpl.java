@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.entity.Course;
 import com.entity.Instructor;
 
 @Repository
@@ -54,6 +55,18 @@ public class InstructorDAOImpl implements InstructorDAO {
 		query.setParameter("instructorId", theId);
 		
 		query.executeUpdate();
+		
+	}
+
+	@Override
+	public void saveCourse(Course theCourse, int theInstructorId) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.save(theCourse);
+		
+		Instructor theInstructor = session.get(Instructor.class, theInstructorId);
+		
+		theInstructor.addCourse(theCourse);
 		
 	}
 	

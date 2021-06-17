@@ -2,6 +2,7 @@ package com.service;
 
 import java.util.List;
 
+import com.entity.Course;
 import com.entity.Instructor;
 
 public interface InstructorService {
@@ -12,4 +13,6 @@ public interface InstructorService {
 	public Instructor getInstructor(int theId);
 
 	public void deleteInstructor(int theId);
+
+	public void saveCourse(Course theCourse, int theInstructorId);
 }
