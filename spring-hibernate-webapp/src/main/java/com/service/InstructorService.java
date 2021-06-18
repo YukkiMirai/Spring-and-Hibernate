@@ -14,5 +14,5 @@ public interface InstructorService {
 
 	public void deleteInstructor(int theId);
 
-	public void saveCourse(Course theCourse, int theInstructorId);
+	public void saveCourse(Course theCourse);
 }

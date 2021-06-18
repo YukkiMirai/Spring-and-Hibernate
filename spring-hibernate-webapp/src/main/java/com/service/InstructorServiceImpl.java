@@ -45,8 +45,8 @@ public class InstructorServiceImpl implements InstructorService {
 
 	@Override
 	@Transactional
-	public void saveCourse(Course theCourse, int theInstructorId) {
-		instructorDAO.saveCourse(theCourse, theInstructorId);
+	public void saveCourse(Course theCourse) {
+		instructorDAO.saveCourse(theCourse);
 		
 	}
 

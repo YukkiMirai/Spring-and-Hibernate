@@ -59,14 +59,10 @@ public class InstructorDAOImpl implements InstructorDAO {
 	}
 
 	@Override
-	public void saveCourse(Course theCourse, int theInstructorId) {
+	public void saveCourse(Course theCourse) {
 		Session session = sessionFactory.getCurrentSession();
 		
 		session.save(theCourse);
-		
-		Instructor theInstructor = session.get(Instructor.class, theInstructorId);
-		
-		theInstructor.addCourse(theCourse);
 		
 	}
 	

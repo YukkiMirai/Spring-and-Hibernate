@@ -2,6 +2,8 @@ package com.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,24 +97,23 @@ public class InstructorController {
 	}
 
 	@RequestMapping("/showFormForAddCourse")
-	public String addCourse(Model theModel, @ModelAttribute("instructorId") int theInstructorId) {
+	public String addCourse(Model theModel, @RequestParam("instructorId") int theInstructorId) {
 		Course theCourse = new Course();
-
-		theModel.addAttribute("course", theCourse);	
 		
-		int id = theInstructorId;
+		Instructor theInstructor = instructorService.getInstructor(theInstructorId);
 		
-		theModel.addAttribute("id", id);
+		theCourse.setInstructor(theInstructor);
+		
+		theModel.addAttribute("course", theCourse);
 		
 		return "/course-form";
 	}
 
 	@RequestMapping("/saveCourse")
-	public String saveCourse(@ModelAttribute("course") Course theCourse,@ModelAttribute("id")  int theInstructorId) {
-		System.out.println("Hello");
-		System.out.println(theInstructorId);		
-		instructorService.saveCourse(theCourse, theInstructorId);
+	public String saveCourse(@ModelAttribute("course") Course theCourse, @RequestParam("instructor.id") int instructorId) {
+		
+		instructorService.saveCourse(theCourse);
 
-		return "redirect:/instructor/detail?instructorId=" + theInstructorId;
+		return "redirect:/instructor/detail?instructorId="+instructorId;
 	}
 }
